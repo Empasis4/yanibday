@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Gift ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #FF69B4;
+            --rose-gold: #B76E79;
+            --white: #FFFFFF;
+            --purple: #9B59B6;
+            --soft-gold: #FFD700;
+            --light-pink: #FFB6C1;
+            --dark-pink: #FF1493;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ffd89b 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: heartFloat 8s infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Stars */
+        .star {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--soft-gold);
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Falling Letters */
+        .falling-letter {
+            position: fixed;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--pink);
+            animation: fall linear infinite;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Falling Images (Flowers/Tulips) */
+        .falling-image {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            animation: fall linear infinite;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Decorative Border */
+        .choice-card::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 28px;
+            pointer-events: none;
+        }
+
+        /* Main Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 105, 180, 0.6);
+            animation: fadeInZoom 1s ease-out;
+        }
+
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--soft-gold);
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Choices Grid */
+        .choices-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .choice-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(155, 89, 182, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 30px;
+        }
+
+        .choice-card:hover::before {
+            opacity: 1;
+        }
+
+        .choice-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+        }
+
+        .choice-card:nth-child(1) { animation-delay: 0.4s; }
+        .choice-card:nth-child(2) { animation-delay: 0.5s; }
+        .choice-card:nth-child(3) { animation-delay: 0.6s; }
+        .choice-card:nth-child(4) { animation-delay: 0.7s; }
+
+        .choice-icon {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .choice-card:nth-child(2) .choice-icon { animation-delay: 0.2s; }
+        .choice-card:nth-child(3) .choice-icon { animation-delay: 0.4s; }
+        .choice-card:nth-child(4) .choice-icon { animation-delay: 0.6s; }
+
+        .choice-title {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .choice-description {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: var(--light-pink);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back Button */
+        .back-btn {
+            margin-top: 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out 1s both;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .choices-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .choice-card {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .choices-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                max-width: 700px;
+            }
+        }
+
+        /* Glow Effect on Hover */
+        .choice-card:hover .choice-icon {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hearts -->
+    <div id="hearts"></div>
+
+    <!-- Stars -->
+    <div id="stars"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1 class="title">Choose Your Gift ❤️</h1>
+        <p class="subtitle">Select something special just for you</p>
+
+        <div class="choices-grid">
+            <!-- Photos of Yani -->
+            <div class="choice-card" onclick="openPhotos()">
+                <span class="choice-icon">📸</span>
+                <h2 class="choice-title">Photos of Yani</h2>
+                <p class="choice-description">Beautiful memories captured in time</p>
+            </div>
+
+            <!-- Song -->
+            <div class="choice-card" onclick="openSong()">
+                <span class="choice-icon">🎵</span>
+                <h2 class="choice-title">Song</h2>
+                <p class="choice-description">A melody made with love</p>
+            </div>
+
+            <!-- Flowers -->
+            <div class="choice-card" onclick="openFlowers()">
+                <span class="choice-icon">🌹</span>
+                <h2 class="choice-title">Flowers</h2>
+                <p class="choice-description">Blooms that never fade</p>
+            </div>
+
+            <!-- Letter -->
+            <div class="choice-card" onclick="openLetter()">
+                <span class="choice-icon">💌</span>
+                <h2 class="choice-title">Letter</h2>
+                <p class="choice-description">Words from my heart to yours</p>
+            </div>
+        </div>
+
+        <a href="birthday.html" class="back-btn">← Back to Birthday</a>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" style="position: fixed; bottom: 30px; right: 30px; background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 20px; z-index: 100; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button id="playBtn" onclick="togglePlay()" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--pink), var(--purple)); border: none; color: var(--white); font-size: 20px; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; align-items: center; justify-content: center;">▶</button>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span>🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="changeVolume()" style="width: 80px; -webkit-appearance: none; height: 5px; border-radius: 5px; background: var(--glass-border); outline: none;">
+            </div>
+        </div>
+        <audio id="audio" loop autoplay>
+            <source src="IV OF SPADES - Captivated (Official Audio).mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Create Particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#FF69B4', '#FFD700', '#FFFFFF', '#9B59B6', '#FFB6C1'];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Create Hearts
+        function createHearts() {
+            const container = document.getElementById('hearts');
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Create Stars
+        function createStars() {
+            const container = document.getElementById('stars');
+            
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(star);
+            }
+        }
+
+        // Create Falling Letters
+        function createFallingLetters() {
+            const letters = ['L', 'O', 'V', 'E', '❤️', '💕', '✨', '🌹', '💖'];
+            
+            for (let i = 0; i < 25; i++) {
+                const letter = document.createElement('div');
+                letter.className = 'falling-letter';
+                letter.textContent = letters[Math.floor(Math.random() * letters.length)];
+                letter.style.left = Math.random() * 100 + '%';
+                letter.style.animationDuration = Math.random() * 5 + 5 + 's';
+                letter.style.animationDelay = Math.random() * 10 + 's';
+                document.body.appendChild(letter);
+            }
+        }
+
+        // Create Falling Images (Flowers/Tulips)
+        function createFallingImages() {
+            const images = ['brah.jpg', 'yjpg.jpg', 'rah.jpg', 'nyark.jpg'];
+            
+            for (let i = 0; i < 20; i++) {
+                const img = document.createElement('img');
+                img.className = 'falling-image';
+                img.src = images[Math.floor(Math.random() * images.length)];
+                img.style.left = Math.random() * 100 + '%';
+                img.style.animationDuration = Math.random() * 8 + 8 + 's';
+                img.style.animationDelay = Math.random() * 15 + 's';
+                img.onerror = function() {
+                    this.style.display = 'none';
+                };
+                document.body.appendChild(img);
+            }
+        }
+
+        // Choice Functions
+        function openPhotos() {
+            window.location.href = 'photos.html';
+        }
+
+        function openSong() {
+            window.location.href = 'song.html';
+        }
+
+        function openFlowers() {
+            window.location.href = 'flowers.html';
+        }
+
+        function openLetter() {
+            window.location.href = 'letter.html';
+        }
+
+        // Music Player
+        let isPlaying = false;
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('playBtn');
+
+        // Save audio state to localStorage
+        function saveAudioState() {
+            localStorage.setItem('audioCurrentTime', audio.currentTime);
+            localStorage.setItem('audioIsPlaying', isPlaying);
+        }
+
+        // Restore audio state from localStorage
+        function restoreAudioState() {
+            const savedTime = localStorage.getItem('audioCurrentTime');
+            const savedPlaying = localStorage.getItem('audioIsPlaying');
+            
+            if (savedTime) {
+                audio.currentTime = parseFloat(savedTime);
+            }
+            
+            if (savedPlaying === 'true') {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playBtn.textContent = '⏸';
+                }).catch(e => {
+                    console.log('Auto-play prevented by browser:', e);
+                    isPlaying = false;
+                    playBtn.textContent = '▶';
+                });
+            } else {
+                isPlaying = false;
+                playBtn.textContent = '▶';
+            }
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+            } else {
+                audio.play().catch(e => console.log('Audio play failed:', e));
+                playBtn.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+            saveAudioState();
+        }
+
+        function changeVolume() {
+            const volume = document.getElementById('volumeSlider').value / 100;
+            audio.volume = volume;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createParticles();
+            createHearts();
+            createStars();
+            createFallingLetters();
+            createFallingImages();
+            
+            // Restore audio state
+            restoreAudioState();
+            
+            // Save state periodically
+            setInterval(saveAudioState, 1000);
+        });
+
+        // Save state before page unload
+        window.addEventListener('beforeunload', saveAudioState);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Baby ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #FF69B4;
+            --rose-gold: #B76E79;
+            --white: #FFFFFF;
+            --purple: #9B59B6;
+            --soft-gold: #FFD700;
+            --light-pink: #FFB6C1;
+            --dark-pink: #FF1493;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ffd89b 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: heartFloat 8s infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Stars */
+        .star {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--soft-gold);
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Falling Letters */
+        .falling-letter {
+            position: fixed;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--pink);
+            animation: fall linear infinite;
+            z-index: 1;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Falling Images */
+        .falling-image {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            animation: fall linear infinite;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--white);
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 105, 180, 0.6);
+            animation: fadeInZoom 2s ease-out, glow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 105, 180, 0.6);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.7);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: var(--soft-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 30px;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing-container {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--white);
+            min-height: 2em;
+            animation: fadeInUp 1.5s ease-out 1s both;
+        }
+
+        .typing-text {
+            border-right: 3px solid var(--pink);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: var(--pink); }
+            50% { border-color: transparent; }
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown-title {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            min-width: 120px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .countdown-number {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: bold;
+            color: var(--soft-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .countdown-label {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Love Message Section */
+        .love-section {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .love-card h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--pink);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .love-card p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--white);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            padding: 80px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-title {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: var(--white);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--pink);
+        }
+
+        /* Birthday Cake */
+        .cake-section {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cake-title {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 50px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .cake {
+            position: relative;
+            width: 200px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--pink), var(--rose-gold));
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cake-middle {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--light-pink), var(--pink));
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cake-top {
+            position: absolute;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--white), var(--light-pink));
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--soft-gold), var(--white));
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #ff6b6b);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.5s infinite alternate;
+            box-shadow: 0 0 20px #ff6b6b, 0 0 40px #ffd93d;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scale(1) rotate(-2deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.1) rotate(2deg);
+                opacity: 0.8;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            -webkit-appearance: none;
+            height: 5px;
+            border-radius: 5px;
+            background: var(--glass-border);
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--pink);
+            cursor: pointer;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 1000;
+            animation: confettiFall 5s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Balloons */
+        .balloon {
+            position: fixed;
+            width: 40px;
+            height: 50px;
+            border-radius: 50% 50% 50% 50%;
+            z-index: 1;
+            animation: balloonFloat 10s infinite;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: var(--white);
+        }
+
+        @keyframes balloonFloat {
+            0%, 100% {
+                transform: translateY(100vh) rotate(-10deg);
+            }
+            50% {
+                transform: translateY(-100vh) rotate(10deg);
+            }
+        }
+
+        /* Welcome Popup */
+        .welcome-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .welcome-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+            animation: popIn 0.5s ease-out;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .popup-btn {
+            background: var(--white);
+            color: var(--pink);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .popup-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--white);
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Scroll Animations */
+        .fade-in-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-card {
+                min-width: 80px;
+                padding: 15px;
+            }
+
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+
+            .love-card {
+                padding: 30px;
+            }
+
+            .music-player {
+                bottom: 20px;
+                right: 20px;
+                padding: 15px;
+            }
+
+            .play-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .volume-slider {
+                width: 60px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            transform: translateY(var(--parallax-offset, 0));
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hearts -->
+    <div id="hearts"></div>
+
+    <!-- Stars -->
+    <div id="stars"></div>
+
+    <!-- Balloons -->
+    <div id="balloons"></div>
+
+    <!-- Welcome Popup -->
+    <div class="welcome-popup" id="welcomePopup">
+        <div class="popup-content">
+            <h2>Happy Birthday My Baby ❤️</h2>
+            <button class="popup-btn" onclick="closePopup()">Open Baby</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Happy Birthday My Baby ❤️</h1>
+        <p class="hero-subtitle">June 25, 2026</p>
+        <div class="typing-container">
+            <span class="typing-text" id="typingText"></span>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section fade-in-scroll">
+        <h2 class="countdown-title">Counting Down to Your Special Day</h2>
+        <div class="countdown-container">
+            <div class="countdown-card">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-card">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-card">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-card">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Message Section -->
+    <section class="love-section fade-in-scroll">
+        <div class="love-card">
+            <h2>My Love Letter to You</h2>
+            <p>
+                To my dearest baby,
+
+                On your special day, I want you to know how grateful I am to have you in my life. Thank you for your love, care, and endless support. You make every moment magical and every day brighter.
+
+                May this birthday bring you endless happiness, unforgettable memories, and all the dreams your heart desires.
+
+                I love you today, tomorrow, and forever. ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery-section fade-in-scroll">
+        <h2 class="gallery-title">Our Beautiful Memories</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <span>📸</span>
+            </div>
+            <div class="gallery-item">
+                <span>💕</span>
+            </div>
+            <div class="gallery-item">
+                <span>🌹</span>
+            </div>
+            <div class="gallery-item">
+                <span>✨</span>
+            </div>
+            <div class="gallery-item">
+                <span>🎂</span>
+            </div>
+            <div class="gallery-item">
+                <span>💖</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Birthday Cake -->
+    <section class="cake-section fade-in-scroll">
+        <h2 class="cake-title">Your Birthday Cake</h2>
+        <div class="cake">
+            <div class="cake-base"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-top"></div>
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-controls">
+            <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+            <div class="volume-control">
+                <span>🔊</span>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" onchange="changeVolume()">
+            </div>
+        </div>
+        <audio id="audio" loop autoplay>
+            <source src="IV OF SPADES - Captivated (Official Audio).mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Made with Love ❤️ | Forever Yours
+    </footer>
+
+    <script>
+        // Create Particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#FF69B4', '#FFD700', '#FFFFFF', '#9B59B6', '#FFB6C1'];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Create Hearts
+        function createHearts() {
+            const container = document.getElementById('hearts');
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Create Stars
+        function createStars() {
+            const container = document.getElementById('stars');
+            
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(star);
+            }
+        }
+
+        // Create Falling Letters
+        function createFallingLetters() {
+            const letters = ['H', 'A', 'P', 'P', 'Y', 'B', 'I', 'R', 'T', 'H', 'D', 'A', 'Y', '❤️', '💕', '✨'];
+            
+            for (let i = 0; i < 30; i++) {
+                const letter = document.createElement('div');
+                letter.className = 'falling-letter';
+                letter.textContent = letters[Math.floor(Math.random() * letters.length)];
+                letter.style.left = Math.random() * 100 + '%';
+                letter.style.animationDuration = Math.random() * 5 + 5 + 's';
+                letter.style.animationDelay = Math.random() * 10 + 's';
+                document.body.appendChild(letter);
+            }
+        }
+
+        // Create Falling Images (Flowers/Tulips)
+        function createFallingImages() {
+            const images = ['brah.jpg', 'yjpg.jpg', 'rah.jpg', 'nyark.jpg'];
+            
+            for (let i = 0; i < 20; i++) {
+                const img = document.createElement('img');
+                img.className = 'falling-image';
+                img.src = images[Math.floor(Math.random() * images.length)];
+                img.style.left = Math.random() * 100 + '%';
+                img.style.animationDuration = Math.random() * 8 + 8 + 's';
+                img.style.animationDelay = Math.random() * 15 + 's';
+                img.onerror = function() {
+                    this.style.display = 'none';
+                };
+                document.body.appendChild(img);
+            }
+        }
+
+        // Create Balloons
+        function createBalloons() {
+            const container = document.getElementById('balloons');
+            const colors = ['#FF69B4', '#FFB6C1', '#9B59B6', '#FFD700', '#FF1493'];
+            
+            for (let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDelay = Math.random() * 10 + 's';
+                balloon.style.animationDuration = Math.random() * 5 + 8 + 's';
+                container.appendChild(balloon);
+            }
+        }
+
+        // Typing Effect
+        function typeText() {
+            const text = "You are the most precious gift in my life.";
+            const element = document.getElementById('typingText');
+            let index = 0;
+            
+            function type() {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 100);
+                }
+            }
+            
+            setTimeout(type, 2000);
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('June 25, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Confetti
+        function createConfetti() {
+            const colors = ['#FF69B4', '#FFD700', '#FFFFFF', '#9B59B6', '#FFB6C1', '#FF1493'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = Math.random() * 3 + 3 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+
+        // Welcome Popup
+        function showWelcomePopup() {
+            setTimeout(() => {
+                document.getElementById('welcomePopup').classList.add('active');
+                createConfetti();
+            }, 3000);
+        }
+
+        function closePopup() {
+            window.location.href = 'choices.html';
+        }
+
+        // Music Player
+        let isPlaying = false;
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('playBtn');
+
+        // Save audio state to localStorage
+        function saveAudioState() {
+            localStorage.setItem('audioCurrentTime', audio.currentTime);
+            localStorage.setItem('audioIsPlaying', isPlaying);
+        }
+
+        // Restore audio state from localStorage
+        function restoreAudioState() {
+            const savedTime = localStorage.getItem('audioCurrentTime');
+            const savedPlaying = localStorage.getItem('audioIsPlaying');
+            
+            if (savedTime) {
+                audio.currentTime = parseFloat(savedTime);
+            }
+            
+            if (savedPlaying === 'true') {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playBtn.textContent = '⏸';
+                }).catch(e => {
+                    console.log('Auto-play prevented by browser:', e);
+                    isPlaying = false;
+                    playBtn.textContent = '▶';
+                });
+            } else {
+                isPlaying = false;
+                playBtn.textContent = '▶';
+            }
+        }
+
+        // Auto-play on load with state restoration
+        window.addEventListener('load', () => {
+            restoreAudioState();
+            
+            // Save state periodically
+            setInterval(saveAudioState, 1000);
+            
+            // Create falling elements
+            createFallingLetters();
+            createFallingImages();
+        });
+
+        // Save state before page unload
+        window.addEventListener('beforeunload', saveAudioState);
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+            } else {
+                audio.play().catch(e => console.log('Audio play failed:', e));
+                playBtn.textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
+            saveAudioState();
+        }
+
+        function changeVolume() {
+            const volume = document.getElementById('volumeSlider').value / 100;
+            audio.volume = volume;
+        }
+
+        // Scroll Animations
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight * 0.8) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Parallax Effect
+        function handleParallax() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                element.style.setProperty('--parallax-offset', scrolled * speed + 'px');
+            });
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createParticles();
+            createHearts();
+            createStars();
+            createBalloons();
+            typeText();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            showWelcomePopup();
+            handleScroll();
+        });
+
+        window.addEventListener('scroll', () => {
+            handleScroll();
+            handleParallax();
+        });
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
